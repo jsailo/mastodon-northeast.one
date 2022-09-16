@@ -1,41 +1,20 @@
-<h1><picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./lib/assets/wordmark-with-sub_forest.dark.png?raw=true">
-  <source media="(prefers-color-scheme: light)" srcset="./lib/assets/wordmark-with-sub_forest.light.png?raw=true">
-  <img alt="Mastodon" src="./lib/assets/wordmark.light.png?raw=true" height="34">
-</picture></h1>
-
-Mastodon fork for [littlefo.rest](https://littlefo.rest)
-
-[![DockerHub](https://img.shields.io/docker/pulls/mashirozx/mastodon.svg?logo=docker&color=2496ED)](https://hub.docker.com/r/mashirozx/mastodon)
-[![Build Universal Image](https://github.com/mashirozx/mastodon/actions/workflows/docker-build.yml/badge.svg)](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-main.yml)
-[![Build AMD64 Image](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-amd64.yml/badge.svg)](https://github.com/mashirozx/mastodon/actions/workflows/docker-build-dev.yml)
-[![Build ARM64 Image](https://img.shields.io/drone/build/mashirozx/mastodon/main?label=Build%20arm64%20Image&logo=drone&logoColor=%2300abe4&server=https%3A%2F%2Fdrone.2heng.xin)](https://drone.2heng.xin/mashirozx/mastodon)
-
-[//]: # ([![DeepSource]&#40;https://deepsource.io/gh/mashirozx/mastodon.svg/?label=active+issues&#41;]&#40;https://deepsource.io/gh/mashirozx/mastodon/?ref=repository-badge&#41;)
-
-[//]: # ([![CircleCI]&#40;https://circleci.com/gh/mashirozx/mastodon.svg?style=svg&#41;]&#40;https://circleci.com/gh/tootsuite/mastodon&#41;)
+Mastodon fork for [northeast.one](https://northeast.one)
 
 ## Highlighted Features
 
+- Search and 'Toot' input box moved to center to save screen real estate.
 - Custom toot max character size with environment variable (see `.env.production.sample`).
-- Full Markdown support, demo [here](https://littlefo.rest/@mashiro/104670343090096501).
+- Full Markdown support, demo [here](https://northeast.one/web/@NorthEastOne/109072264173448636).
 - Media Sudoku (media attachments upper limit increases to 9), demo [here](https://littlefo.rest/@mashiro/105426865955962437).
 - Local-only toot support.
 - Quotation support like twitter (QT but not RT).
 - An easy-using translation button to translate toot in any language to your mother tongue with Google Translate, demo [here](https://s3.mashiro.top/mstdn/media_attachments/files/108/763/169/312/585/099/original/3735baafcfe154f3.png).
 - A bunch of awesome themes.
-- Enhanced Elasticsearch experience with Chinese words segmentation support (see specifications bellow).
-- Login with GitHub and GitLab OAuth 2, try it now [here](https://littlefo.rest)!
 
 ## Specifications
 
-### Version Control
-This is a rebase fork of `tootsuite/mastodon`, all local changes are rebased on the top. To pull the latest commits of this repo, use `git reset --hard origin/main` instead of `git pull`. If you are going to develop based on this fork, I strongly recommend you always [cherry-pick](https://git-scm.com/docs/git-cherry-pick) your commits to the `HEAD` of this branch.
-
 ### Enable Custom Features
-To enable the new custom features, please add the necessary configurations first according to the file end of `.env.production.sample`.
-
-**This project added the Chinese words segmentation support in ElasticSearch, please use this [ElasticSearch image](https://github.com/mashirozx/elasticsearch-cnplugin). Using the original version of ElasticSearch Engine may goes into error.**
+To enable the custom features, add the necessary configurations using the `.env.production.sample` file.
 
 ### Docker Images
 The Docker images are listed [here](https://hub.docker.com/r/mashirozx/mastodon/tags).
@@ -87,14 +66,8 @@ The Docker images are listed [here](https://hub.docker.com/r/mashirozx/mastodon/
     </tr>
 </table>
 
-## Finally
-
-Thanks for the support of [JetBrains](https://jb.gg/OpenSourceSupport).
-
-[<img width="100" src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg" alt="JetBrains Logo (Main) logo.">](https://jb.gg/OpenSourceSupport)
-
 ***
-*Follows the original README*
+**STUFF BELOW IS FROM THE ORIGINAL MASTODON README**
 ***
 
 

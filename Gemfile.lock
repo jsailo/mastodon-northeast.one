@@ -653,7 +653,8 @@ GEM
       redis (>= 4.5.0, < 5)
     sidekiq-bulk (0.2.0)
       sidekiq
-    sidekiq-prometheus-exporter (0.1.15)
+    sidekiq-prometheus-exporter (0.1.17)
+      rack (>= 1.6.0)
       sidekiq (>= 3.3.1)
     sidekiq-scheduler (4.0.2)
       redis (>= 4.2.0)

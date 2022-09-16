@@ -32,7 +32,7 @@ jobs:
           echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
           
       - name: 👻 Setup metadata
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@v4
         id: meta
         with:
           images: mashirozx/mastodon

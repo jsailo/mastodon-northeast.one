@@ -6,6 +6,8 @@ import ComposeFormContainer from 'mastodon/features/compose/containers/compose_f
 import NavigationContainer from 'mastodon/features/compose/containers/navigation_container';
 import LinkFooter from './link_footer';
 import { changeComposing } from 'mastodon/actions/compose';
+import { openModal } from 'mastodon/actions/modal';
+import Button from 'mastodon/components/button';
 
 export default @connect()
 class ComposePanel extends React.PureComponent {
@@ -22,11 +24,16 @@ class ComposePanel extends React.PureComponent {
     this.props.dispatch(changeComposing(false));
   }
 
+  handleOpenModal = () => {
+    this.props.dispatch(openModal('COMPOSE'));
+  }
+
   render() {
     return (
       <div className='compose-panel' onFocus={this.onFocus}>
         <SearchContainer openInRoute />
         <NavigationContainer onClose={this.onBlur} />
+        <Button className='toot-btn' text='Toot!' onClick={this.handleOpenModal} block  />
         <ComposeFormContainer singleColumn />
         <LinkFooter withHotkeys />
       </div>

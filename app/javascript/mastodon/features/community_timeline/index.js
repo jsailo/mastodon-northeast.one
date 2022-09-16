@@ -9,6 +9,7 @@ import { expandCommunityTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectCommunityStream } from '../../actions/streaming';
+import ComposeFormContainer from 'mastodon/features/compose/containers/compose_form_container';
 
 const messages = defineMessages({
   title: { id: 'column.community', defaultMessage: 'Local timeline' },
@@ -120,6 +121,10 @@ class CommunityTimeline extends React.PureComponent {
           <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>
 
+        <div className={'top-pined-composer'}>
+          <ComposeFormContainer topPined />
+        </div>
+
         <StatusListContainer
           trackScroll={!pinned}
           scrollKey={`community_timeline-${columnId}`}
@@ -127,7 +132,7 @@ class CommunityTimeline extends React.PureComponent {
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
           bindToDocument={!multiColumn}
-          excludeBot={true}
+          excludeBot
         />
       </Column>
     );

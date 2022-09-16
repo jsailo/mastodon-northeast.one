@@ -1,0 +1,26 @@
+@media screen and (min-width: 896px) {
+  .compose-panel .compose-form {
+    display: none;
+  }
+}
+
+.top-pined-composer {
+  .compose-form {
+    padding: 10px 0 0 0;
+    @media screen and (min-width: 896px) {
+      display: block !important;
+    }
+
+    .compose-form__buttons-wrapper {
+      align-items: center;
+    }
+
+    .character-counter__wrapper {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+}
+

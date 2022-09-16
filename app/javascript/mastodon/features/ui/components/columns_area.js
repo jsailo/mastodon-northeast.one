@@ -33,6 +33,7 @@ import NavigationPanel from './navigation_panel';
 
 import { supportsPassiveEvents } from 'detect-passive-events';
 import { scrollRight } from '../../../scroll';
+import ComposeFormContainer from 'mastodon/features/compose/containers/compose_form_container';
 
 const componentMap = {
   'COMPOSE': Compose,
@@ -235,6 +236,9 @@ class ColumnsArea extends ImmutablePureComponent {
           </div>
 
           <div className={`columns-area__panels__main ${floatingActionButton && 'with-fab'}`}>
+            <div className={'top-pined-composer'}>
+              <ComposeFormContainer topPined />
+            </div>
             <TabsBar key='tabs' />
             {content}
           </div>

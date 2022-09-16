@@ -24,7 +24,7 @@ import {
   replyCompose,
   quoteCompose,
   mentionCompose,
-  directCompose,
+  directCompose, COMPOSE_PANEL_BREAKPOINT,
 } from '../../actions/compose';
 import {
   muteStatus,
@@ -234,16 +234,26 @@ class Status extends ImmutablePureComponent {
     }
   }
 
+  openComposeModal () {
+    if(window.innerWidth >= COMPOSE_PANEL_BREAKPOINT) {
+      this.props.dispatch(openModal('COMPOSE'));
+    }
+  }
+
   handleReplyClick = (status) => {
     let { askReplyConfirmation, dispatch, intl } = this.props;
     if (askReplyConfirmation) {
       dispatch(openModal('CONFIRM', {
         message: intl.formatMessage(messages.replyMessage),
         confirm: intl.formatMessage(messages.replyConfirm),
-        onConfirm: () => dispatch(replyCompose(status, this.context.router.history)),
+        onConfirm: () => {
+          dispatch(replyCompose(status, this.context.router.history));
+          this.openComposeModal();
+        },
       }));
     } else {
       dispatch(replyCompose(status, this.context.router.history));
+      this.openComposeModal();
     }
   }
 
@@ -277,10 +287,14 @@ class Status extends ImmutablePureComponent {
       dispatch(openModal('CONFIRM', {
         message: intl.formatMessage(messages.quoteMessage),
         confirm: intl.formatMessage(messages.quoteConfirm),
-        onConfirm: () => dispatch(quoteCompose(status, this.context.router.history)),
+        onConfirm: () => {
+          dispatch(quoteCompose(status, this.context.router.history));
+          this.openComposeModal();
+        },
       }));
     } else {
       dispatch(quoteCompose(status, this.context.router.history));
+      this.openComposeModal();
     }
   }
 

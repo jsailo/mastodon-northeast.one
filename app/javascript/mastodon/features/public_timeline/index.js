@@ -9,6 +9,8 @@ import { expandPublicTimeline } from '../../actions/timelines';
 import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectPublicStream } from '../../actions/streaming';
+import ComposeFormContainer from 'mastodon/features/compose/containers/compose_form_container';
+import SearchContainer from 'mastodon/features/compose/containers/search_container';
 
 const messages = defineMessages({
   title: { id: 'column.public', defaultMessage: 'Federated timeline' },
@@ -122,6 +124,11 @@ class PublicTimeline extends React.PureComponent {
         >
           <ColumnSettingsContainer columnId={columnId} />
         </ColumnHeader>
+
+        <div className={'top-pined-composer'}>
+          <SearchContainer openInRoute />
+          <ComposeFormContainer topPined />
+        </div>
 
         <StatusListContainer
           timelineId={`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`}

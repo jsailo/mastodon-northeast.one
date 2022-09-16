@@ -23,7 +23,7 @@ class HomeController < ApplicationController
     elsif single_user_mode?
       short_account_path(Account.local.without_suspended.where('id > 0').first)
     else
-      about_path
+      public_timeline_path
     end
   end
 

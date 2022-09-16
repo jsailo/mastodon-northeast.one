@@ -6,6 +6,7 @@ import { debounce } from 'lodash';
 import { isUserTouching } from '../../../is_mobile';
 import Icon from 'mastodon/components/icon';
 import NotificationsCounterIcon from './notifications_counter_icon';
+import SearchContainer from 'mastodon/features/compose/containers/search_container';
 
 export const links = [
   <NavLink className='tabs-bar__link' to='/home' data-preview-title-id='column.home' data-preview-icon='home' ><Icon id='home' fixedWidth /><FormattedMessage id='tabs_bar.home' defaultMessage='Home' /></NavLink>,
@@ -79,6 +80,12 @@ class TabsBar extends React.PureComponent {
         </nav>
 
         <div id='tabs-bar__portal' />
+
+        {['/home', '/public/local', '/public'].includes(this.props.history.location.pathname) && <>
+          <div className={'top-pined-composer top-pined-search'}>
+            <SearchContainer openInRoute />
+          </div>
+        </>}
       </div>
     );
   }

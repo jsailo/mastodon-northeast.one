@@ -201,22 +201,25 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
           <label>
             <span style={{ display: 'none' }}>{placeholder}</span>
 
-            <Textarea
-              ref={this.setTextarea}
-              className='autosuggest-textarea__textarea'
-              disabled={disabled}
-              placeholder={placeholder}
-              autoFocus={autoFocus}
-              value={value}
-              onChange={this.onChange}
-              onKeyDown={this.onKeyDown}
-              onKeyUp={onKeyUp}
-              onFocus={this.onFocus}
-              onBlur={this.onBlur}
-              onPaste={this.onPaste}
-              dir='auto'
-              aria-autocomplete='list'
-            />
+            <div className='textarea-wrapper'>
+              <Textarea
+                ref={this.setTextarea}
+                className='autosuggest-textarea__textarea'
+                disabled={disabled}
+                placeholder={placeholder}
+                autoFocus={autoFocus}
+                value={value}
+                onChange={this.onChange}
+                onKeyDown={this.onKeyDown}
+                onKeyUp={onKeyUp}
+                onFocus={this.onFocus}
+                onBlur={this.onBlur}
+                onPaste={this.onPaste}
+                dir='auto'
+                aria-autocomplete='list'
+                style={{ height: 'auto' }}
+              />
+            </div>
           </label>
         </div>
         {children}

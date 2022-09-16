@@ -13,6 +13,7 @@ import { fetchAnnouncements, toggleShowAnnouncements } from 'mastodon/actions/an
 import AnnouncementsContainer from 'mastodon/features/getting_started/containers/announcements_container';
 import classNames from 'classnames';
 import IconWithBadge from 'mastodon/components/icon_with_badge';
+import ComposeFormContainer from 'mastodon/features/compose/containers/compose_form_container';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },
@@ -146,6 +147,10 @@ class HomeTimeline extends React.PureComponent {
         >
           <ColumnSettingsContainer />
         </ColumnHeader>
+
+        <div className={'top-pined-composer'}>
+          <ComposeFormContainer topPined />
+        </div>
 
         <StatusListContainer
           trackScroll={!pinned}

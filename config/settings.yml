@@ -18,7 +18,7 @@ defaults: &defaults
   show_staff_badge: true
   default_sensitive: false
   default_federation: true
-  default_content_type: 'text/plain'
+  default_content_type: 'text/markdown'
   hide_network: false
   unfollow_modal: false
   boost_modal: false
@@ -30,7 +30,7 @@ defaults: &defaults
   reduce_motion: false
   disable_swiping: false
   enable_snowfall: false
-  enable_noto_serif: true
+  enable_noto_serif: false
   custom_css: ''
   icon_pack: 'forest'
   show_application: true

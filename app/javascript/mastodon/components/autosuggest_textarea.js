@@ -216,6 +216,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
               onPaste={this.onPaste}
               dir='auto'
               aria-autocomplete='list'
+              style={{ height: 'auto' }}
             />
           </label>
         </div>

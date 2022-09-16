@@ -6,7 +6,7 @@ import {
   replyCompose,
   quoteCompose,
   mentionCompose,
-  directCompose,
+  directCompose, COMPOSE_PANEL_BREAKPOINT,
 } from '../actions/compose';
 import {
   reblog,
@@ -76,6 +76,11 @@ const makeMapStateToProps = () => {
 };
 
 const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
+  openComposeModal () {
+    if(window.innerWidth >= COMPOSE_PANEL_BREAKPOINT) {
+      dispatch(openModal('COMPOSE'));
+    }
+  },
 
   onReply (status, router) {
     dispatch((_, getState) => {
@@ -85,10 +90,14 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
         dispatch(openModal('CONFIRM', {
           message: intl.formatMessage(messages.replyMessage),
           confirm: intl.formatMessage(messages.replyConfirm),
-          onConfirm: () => dispatch(replyCompose(status, router)),
+          onConfirm: () => {
+            dispatch(replyCompose(status, router));
+            this.openComposeModal();
+          },
         }));
       } else {
         dispatch(replyCompose(status, router));
+        this.openComposeModal();
       }
     });
   },
@@ -117,10 +126,14 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
         dispatch(openModal('CONFIRM', {
           message: intl.formatMessage(messages.quoteMessage),
           confirm: intl.formatMessage(messages.quoteConfirm),
-          onConfirm: () => dispatch(quoteCompose(status, router)),
+          onConfirm: () => {
+            dispatch(quoteCompose(status, router));
+            this.openComposeModal();
+          },
         }));
       } else {
         dispatch(quoteCompose(status, router));
+        this.openComposeModal();
       }
     });
   },
@@ -159,25 +172,32 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   onDelete (status, history, withRedraft = false) {
     if (!deleteModal) {
       dispatch(deleteStatus(status.get('id'), history, withRedraft));
+      if(withRedraft) setTimeout(this.openComposeModal, 1000);
     } else {
       dispatch(openModal('CONFIRM', {
         message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
         confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
-        onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
+        onConfirm: () => {
+          dispatch(deleteStatus(status.get('id'), history, withRedraft));
+          if(withRedraft) setTimeout(this.openComposeModal, 1000);
+        },
       }));
     }
   },
 
   onEdit (status, history) {
     dispatch(editStatus(status.get('id'), history));
+    this.openComposeModal();
   },
 
   onDirect (account, router) {
     dispatch(directCompose(account, router));
+    this.openComposeModal();
   },
 
   onMention (account, router) {
     dispatch(mentionCompose(account, router));
+    this.openComposeModal();
   },
 
   onOpenMedia (statusId, media, index) {

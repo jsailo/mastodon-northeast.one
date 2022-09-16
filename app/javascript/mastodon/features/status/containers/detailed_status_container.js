@@ -4,7 +4,7 @@ import { makeGetStatus, makeGetPictureInPicture } from '../../../selectors';
 import {
   replyCompose,
   mentionCompose,
-  directCompose,
+  directCompose, COMPOSE_PANEL_BREAKPOINT,
 } from '../../../actions/compose';
 import {
   reblog,
@@ -19,7 +19,7 @@ import {
   unmuteStatus,
   deleteStatus,
   hideStatus,
-  revealStatus,
+  revealStatus, hideQuote, revealQuote,
 } from '../../../actions/statuses';
 import { initMuteModal } from '../../../actions/mutes';
 import { initBlockModal } from '../../../actions/blocks';
@@ -53,6 +53,12 @@ const makeMapStateToProps = () => {
 };
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
+
+  openComposeModal () {
+    if(window.innerWidth >= COMPOSE_PANEL_BREAKPOINT) {
+      dispatch(openModal('COMPOSE'));
+    }
+  },
 
   onReply (status, router) {
     dispatch((_, getState) => {
@@ -111,21 +117,27 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
   onDelete (status, history, withRedraft = false) {
     if (!deleteModal) {
       dispatch(deleteStatus(status.get('id'), history, withRedraft));
+      if(withRedraft) setTimeout(this.openComposeModal, 1000);
     } else {
       dispatch(openModal('CONFIRM', {
         message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
         confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
-        onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
+        onConfirm: () => {
+          dispatch(deleteStatus(status.get('id'), history, withRedraft));
+          if(withRedraft) setTimeout(this.openComposeModal, 1000);
+        },
       }));
     }
   },
 
   onDirect (account, router) {
     dispatch(directCompose(account, router));
+    this.openComposeModal();
   },
 
   onMention (account, router) {
     dispatch(mentionCompose(account, router));
+    this.openComposeModal();
   },
 
   onOpenMedia (media, index) {

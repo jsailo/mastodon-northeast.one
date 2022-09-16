@@ -73,6 +73,9 @@ class ComposeForm extends ImmutablePureComponent {
     anyMedia: PropTypes.bool,
     isInReply: PropTypes.bool,
     singleColumn: PropTypes.bool,
+    topPined: PropTypes.bool,
+    withModal: PropTypes.bool,
+    onCloseModal: PropTypes.func,
   };
 
   static defaultProps = {
@@ -113,6 +116,10 @@ class ComposeForm extends ImmutablePureComponent {
     }
 
     this.props.onSubmit(this.context.router ? this.context.router.history : null);
+
+    if(this.props.withModal) {
+      this.props.onCloseModal?.();
+    }
   }
 
   onSuggestionsClearRequested = () => {
@@ -285,14 +292,15 @@ class ComposeForm extends ImmutablePureComponent {
 
           <div className='character-counter__wrapper'>
             <CharacterCounter max={MAX_CHARS} text={this.getFulltextForCharacterCounting()} />
+            {this.props.topPined && <Button text={publishText} onClick={this.handleSubmit} disabled={!this.canSubmit()} block />}
           </div>
         </div>
 
-        <div className='compose-form__publish'>
+        {!this.props.topPined && <div className='compose-form__publish'>
           <div className='compose-form__publish-button-wrapper'>
             <Button text={publishText} onClick={this.handleSubmit} disabled={!this.canSubmit()} block />
           </div>
-        </div>
+        </div>}
       </div>
     );
   }

@@ -12,7 +12,7 @@ import {
 } from '../../../actions/accounts';
 import {
   mentionCompose,
-  directCompose,
+  directCompose, COMPOSE_PANEL_BREAKPOINT,
 } from '../../../actions/compose';
 import { initMuteModal } from '../../../actions/mutes';
 import { initBlockModal } from '../../../actions/blocks';
@@ -65,12 +65,20 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
+  openComposeModal () {
+    if(window.innerWidth >= COMPOSE_PANEL_BREAKPOINT) {
+      dispatch(openModal('COMPOSE'));
+    }
+  },
+
   onMention (account, router) {
     dispatch(mentionCompose(account, router));
+    this.openComposeModal();
   },
 
   onDirect (account, router) {
     dispatch(directCompose(account, router));
+    this.openComposeModal();
   },
 
   onReblogToggle (account) {

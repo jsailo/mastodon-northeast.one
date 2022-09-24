@@ -311,14 +311,14 @@ class Status extends ImmutablePureComponent {
 
     if (!deleteModal) {
       dispatch(deleteStatus(status.get('id'), history, withRedraft));
-      if(withRedraft) this.openComposeModal();
+      if(withRedraft) setTimeout(this.openComposeModal, 1000);
     } else {
       dispatch(openModal('CONFIRM', {
         message: intl.formatMessage(withRedraft ? messages.redraftMessage : messages.deleteMessage),
         confirm: intl.formatMessage(withRedraft ? messages.redraftConfirm : messages.deleteConfirm),
         onConfirm: () => {
           dispatch(deleteStatus(status.get('id'), history, withRedraft));
-          if(withRedraft) this.openComposeModal();
+          if(withRedraft) setTimeout(this.openComposeModal, 1000);
         },
       }));
     }

@@ -23,7 +23,7 @@ class BoostModal extends ImmutablePureComponent {
   }
 
   render() {
-    const { intl, onClose } = this.props;
+    // const { intl, onClose } = this.props;
 
     return (
       <div className='modal-root__modal report-modal embed-modal'>

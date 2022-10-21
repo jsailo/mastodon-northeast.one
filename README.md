@@ -67,7 +67,7 @@ The Docker images are listed [here](https://hub.docker.com/r/mashirozx/mastodon/
 </table>
 
 ***
-**STUFF BELOW IS FROM THE ORIGINAL MASTODON README**
+**⭐STUFF BELOW IS FROM THE ORIGINAL MASTODON README⭐**
 ***
 
 

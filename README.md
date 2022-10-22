@@ -4,8 +4,8 @@ Mastodon fork for [northeast.one](https://northeast.one)
 
 - Search and 'Toot' input box moved to center to save screen real estate.
 - Custom toot max character size with environment variable (see `.env.production.sample`).
-- Full Markdown support, demo [here](https://northeast.one/web/@NorthEastOne/109072264173448636).
-- Media Sudoku (media attachments upper limit increases to 9), demo [here](https://littlefo.rest/@mashiro/105426865955962437).
+- Full Markdown support, demo [here](https://northeast.one/tags/Markdown).
+- Media Sudoku (media attachments upper limit increases to 9), demo [here](https://northeast.one/@NorthEastOne/109176450609892844).
 - Local-only toot support.
 - Quotation support like twitter (QT but not RT).
 - An easy-using translation button to translate toot in any language to your mother tongue with Google Translate, demo [here](https://s3.mashiro.top/mstdn/media_attachments/files/108/763/169/312/585/099/original/3735baafcfe154f3.png).
